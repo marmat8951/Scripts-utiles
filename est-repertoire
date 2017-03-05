@@ -1,0 +1,3 @@
+#!/bin/bash
+stat $1 -c%A | cut -c1 | grep d -qx && exit 0
+exit 1

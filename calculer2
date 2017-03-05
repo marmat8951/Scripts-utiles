@@ -1,0 +1,9 @@
+#!/bin/bash
+ok=VRAI
+while $(echo $ok|grep VRAI)
+do
+read commande
+resultat=$(expr $commande)||ok=FAUX
+echo resultat
+done
+exit 0

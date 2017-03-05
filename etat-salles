@@ -1,0 +1,6 @@
+#!/bin/bash
+for i in $*
+do
+	resultat=$(echo -e $(etat-salle $i) '\n' $resultat)
+done
+echo -e $resultat |tr ' ' '\n' | sort | uniq

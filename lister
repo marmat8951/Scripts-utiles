@@ -1,0 +1,25 @@
+#!/bin/bash
+listerExe=FAUX
+listerRep=FAUX
+while $(expr $# > 0)
+do
+	echo $1|grep -e --path 1> /dev/null && listerExe=VRAI
+	echo $1|grep -e --repertoire 1> /dev/null && est-repertoire $2 && listerRep=VRAI && rep=${rep}:$2 && shift
+	shift
+done
+echo $listerExe|grep VRAI 1>/dev/null && echo $listerRep|grep VRAI 1>/dev/null && echo "erreur, --path et --repertoires ne peuvent etre present en même temps!" >2 && exit 1
+
+
+if $(echo $listerExe|grep VRAI 1>/dev/null)
+    then
+    lister-executables
+elif $(echo $listerRep|grep VRAI 1>/dev/null)
+then
+    for repertoires in $(echo ${rep}|tr ':' ' ');do
+    lister-repertoires $repertoires
+    done
+else
+    echo "Aucun parametre n'été trouvé ou le repertoire indiqué est faux" >2
+    exit 2
+fi
+exit 0

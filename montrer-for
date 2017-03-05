@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "nom de la commande" \$0 = $(echo $0)
+echo "nombre d'arguments" \$\# = $#
+for i in $(seq 1 $#)
+do
+echo "argument numéro "${i}       \$${i} =  $1
+shift
+done
+exit 0
+

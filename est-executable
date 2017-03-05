@@ -1,0 +1,4 @@
+#!/bin/bash
+stat -c%A $1 | cut -c4 | grep x -qx && exit 0
+exit 1
+

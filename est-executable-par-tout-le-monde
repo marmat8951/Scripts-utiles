@@ -1,0 +1,3 @@
+#!/bin/bash
+echo $(stat -c%A $1)| cut -c4,7,10|grep "xxx" -qx && exit 0
+exit 1

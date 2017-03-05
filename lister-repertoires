@@ -1,0 +1,17 @@
+#!/bin/bash
+if $(est-repertoire $1)
+ then
+  ancienDossier=$(pwd)
+  cd $1
+  listeFichier=$(stat -c%A%n *)
+  for fichier in ${listeFichier}; do
+    if $(echo $fichier|cut -c 1|grep d 1>/dev/null 2>/dev/null)
+      then
+	echo $fichier|cut -c 1-10 --complement
+    fi
+   done
+  cd $ancienDossier
+  else
+  exit 1
+fi
+exit 0

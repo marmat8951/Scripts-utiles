@@ -1,0 +1,4 @@
+#!/bin/bash
+pareil2 $# 0 && exit 0
+exit 1
+

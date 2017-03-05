@@ -1,0 +1,10 @@
+#!/bin/bash
+nomsalle=$(arbre $1)
+est-vide $nomsalle && nomsalle=$1
+ligne=$(cat /home/public/m1101/salles-tp | cut -d : -f 2 | grep -n $nomsalle | cut -d : -f 1)
+est-vide $ligne && exit 1
+for i in $(seq -w 01 $(cat salles | head -n $ligne | tail -n 1 | cut -d : -f 3))
+do
+echo ${nomsalle}$i
+done 
+

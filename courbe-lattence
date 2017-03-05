@@ -1,0 +1,14 @@
+#!/bin/bash
+cat /tmp/courbe > /dev/null 2> /dev/null && rm /tmp/courbe
+pareil2 $# 0 && exit 1
+est-nombre-entier $2 && longeur=$2
+est-vide $2 && longeur=25
+attente=1s
+for idx in $(seq 1 $longeur)
+do
+echo $idx' '$(ping $1 -c 1 | tail -n 1 | cut -f 6 -d /) >> /tmp/courbe
+sleep $(echo $attente)
+echo 'Ping du temps de lattence '$idx'x'$attente
+done
+cat /tmp/courbe | gnuplot -e 'plot "-" with linespoint ; pause mouse ; '
+

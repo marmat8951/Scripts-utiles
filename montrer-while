@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "nom de la commande" \$0 = $(echo $0)
+echo "nombre d'arguments" \$\# = $#
+i=1
+while $(expr $# >  0)
+ do
+ echo "argument numéro "${i}  \$${i} = $1
+ i=$( expr $i + 1 )
+ shift
+done
+exit 0

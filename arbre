@@ -1,0 +1,6 @@
+#!/bin/bash
+expr $# = 0 > /dev/null && exit 1
+ligne=$(cat salles | cut -d : -f 1 | grep -n $1 | cut -d : -f 1)
+est-vide $ligne && exit 1
+cat salles | head -n $ligne | tail -n 1 | cut -d : -f 2
+

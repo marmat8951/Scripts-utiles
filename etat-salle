@@ -1,0 +1,6 @@
+#!/bin/bash
+machinesalles=$(machines $1)
+for i in $machinesalles
+do
+est-accessible $i && echo $i
+done

@@ -1,0 +1,11 @@
+#!/bin/bash
+PATHtmp=$(echo $PATH|tr ':' '\n')
+anciendossier=$(pwd)
+for dossier in ${PATHtmp}; do
+  cd $dossier
+  for fichier in $(stat -c%n * 2>/dev/null);do
+    est-executable $fichier;echo $(pwd)'/'$(stat -c%n $fichier)
+  done
+done
+exit 0
+
