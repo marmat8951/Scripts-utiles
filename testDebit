@@ -1,0 +1,16 @@
+#!/bin/bash
+# nececite le programme python speedtest-cli. Pour l'installer: pip install speedtest-cli
+cat /tmp/courbeDeb > /dev/null 2> /dev/null && rm /tmp/courbeDeb
+(est-nombre-entier $1 && nombresDeFois=$1) || nombresDeFois=15
+(est-nombre-entier $2 && delaiAttente=$2) || delaiAttente=1
+#nombre de fois = nombre de points delaiAttente=temps entre chaque test
+echo "Le test va durer pendant plus de "$(expr $nombreDeFois * $delaiAttente)" minutes. Etes vous sur(e) de le lancer?"([O]/N)
+read confirm
+echo $confirm | tr n N | cut -c1 | grep -q n && echo "Annulation!" && exit 1
+for idx in $(seq 1 $nombreDeFois)
+do
+echo "mesure "$idx" démarée"
+valeurs= $idx' 'speedtest-cli | grep -e Download -e Upload | cut -d ' ' -f 2- | tr '\n' ' '
+#Ajouter gestion kbits/s?
+
+#A continuer
