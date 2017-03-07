@@ -14,3 +14,5 @@ valeurs= $idx' 'speedtest-cli | grep -e Download -e Upload | cut -d ' ' -f 2- | 
 #Ajouter gestion kbits/s?
 
 #A continuer
+echo $valeurs > /tmp/courbeSpeedTest
+done
