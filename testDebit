@@ -1,5 +1,6 @@
 #!/bin/bash
 # nececite le programme python speedtest-cli. Pour l'installer: pip install speedtest-cli
+#amélioration: verification de Superuser + proposer l'installation?
 cat /tmp/courbeDeb > /dev/null 2> /dev/null && rm /tmp/courbeDeb
 (est-nombre-entier $1 && nombresDeFois=$1) || nombresDeFois=15
 (est-nombre-entier $2 && delaiAttente=$2) || delaiAttente=1
