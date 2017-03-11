@@ -1,4 +1,0 @@
-#!/bin/bash
-i= 0
-i= $(expr $i + 1)
-exit $i

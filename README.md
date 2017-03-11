@@ -34,3 +34,13 @@ lister-repertoires {RepertoireDeDepart}
 
 Necessite comme paramètre le repertoire de depart depuis lequel on liste les autres repertoire.
 
+----
+
+mkdire {repertoire}
+
+crée un repertoire avec mkdir et y accède directement avec cd
+
+----
+
+
+
