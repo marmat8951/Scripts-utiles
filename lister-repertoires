@@ -1,4 +1,5 @@
 #!/bin/bash
+pareil2 $# 0 && echo "Vous devez passer en paramètre un repertoire" && exit 1
 if $(est-repertoire $1)
  then
   ancienDossier=$(pwd)
