@@ -1,0 +1,17 @@
+#!/bin/bash
+while echo "Boucle"
+do
+  connecte=$(who | cut -f 1 -d ' '| uniq | tr ' ' '\n')
+  whoami=$(whoami)
+  for i in $connecte
+   do
+   if pareil2 $i $whoami
+   then
+      echo "noproblemo"
+   else
+     eject -T cdrom
+  fi
+  done
+  sleep 1s
+done
+
