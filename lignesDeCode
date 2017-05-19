@@ -1,0 +1,17 @@
+#!/bin/bash
+!est-repertoire2 $1 && exit 1
+listeFichiers=$(ls -R --width 1 $1)
+repertoireActuel=$(pwd);
+numeroDeLigne=1;
+lMax=$(wc -l)
+for i in $(seq 1 $lMax)
+do
+	ligne=$(echo $listeFichiers | head -n i | tail -n 1
+	if [ -d $(echo $ligne | tr ':' ' ')]
+	then
+	cd ${repertoireActuel}/$(echo $ligne |tr ':' ' ')
+	else
+	echo ${repertoireActuel}/$(echo $ligne |tr ':' ' ')" n'est pas un fichier"
+	fi
+done
+exit 0
