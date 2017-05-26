@@ -42,5 +42,9 @@ crée un repertoire avec mkdir et y accède directement avec cd
 
 ----
 
+lignesDeCode {Types de fichier}
 
+Récupère ne nombre de lignes dans les fichiers dont le type est spécifié en paramètre.
 
+Exemple: ligneDeCode c h
+Donne le nombre de ligne dans les fichiers *.c et *.h du repertoire courant et le total.
