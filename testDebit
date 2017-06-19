@@ -1,6 +1,8 @@
 #!/bin/bash
+
 # nececite le programme python speedtest-cli. Pour l'installer: pip install speedtest-cli
 #amélioration: verification de Superuser + proposer l'installation?
+
 cat /tmp/courbeSpeedTest > /dev/null 2> /dev/null && rm /tmp/courbeSpeedTest
 nombreDeFois=$1
 delaiAttente=$2
@@ -10,15 +12,21 @@ est-vide $2 && delaiAttente=1
 echo 'Le test va durer pendant plus de '$(expr $nombreDeFois "*" $delaiAttente)' minutes. Etes vous sur(e) de le lancer?([O]/N)'
 read confirm
 echo $confirm | tr n N | cut -c 1 | grep -q 'N' && echo "Annulation!" && exit 1
+
 for idx in $(seq 1 $nombreDeFois)
 do
-echo "mesure "$idx" démarée"
-valeurs=$idx' '$(speedtest-cli | grep -e Download -e Upload | cut -d ' ' -f 2- | tr '\n' ' ' | cut -d ' ' -f 2 --complement | cut -d ' ' -f 1-2)
+    echo "mesure "$idx" démarée"
+    valeurs=$idx' '$(speedtest-cli | grep -e Download -e Upload | cut -d ' ' -f 2- | tr '\n' ' ' | cut -d ' ' -f 2 --complement | cut -d ' ' -f 1-2)
 #Ajouter gestion kbits/s?
 
 #A continuer
-echo $valeurs | cat >> /tmp/courbeSpeedTest
-sleep $(echo $delaiAttente)m
+    echo $valeurs >> /tmp/courbeSpeedTest
+    echo "Résultat de la mesure ${idx}: $valeurs"
+    if expr $idx != nombreDeFois 1>/dev/null 2&>1
+       then
+          sleep $(echo $delaiAttente)
+    fi
+
 done
 cat /tmp/courbeSpeedTest | gnuplot -e 'plot "-" with linespoint ; pause mouse ; '
 
