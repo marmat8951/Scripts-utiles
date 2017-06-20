@@ -10,7 +10,7 @@ est-vide $1 && nombreDeFois=15
 est-vide $2 && delaiAttente=1
 #nombre de fois = nombre de points delaiAttente=temps entre chaque test
 echo 'Le test va durer pendant plus de '$(expr $(expr $nombreDeFois - 1) "*" $delaiAttente)' minutes. Etes vous sur(e) de le lancer?([O]/N)'
-read confirm
+read -s -n 1 confirm
 echo $confirm | tr n N | cut -c 1 | grep -q 'N' && echo "Annulation!" && exit 1
 
 for idx in $(seq 1 $nombreDeFois)
@@ -27,14 +27,14 @@ do
     
     if echo $valeurs | cut -d ' ' -f 4 | grep "kbit/s"
     then
-
+	valeurs=$valeurs
     fi
     
     
 
     valeurs=$(echo $valeurs| cut -d ' ' -f 1-3 | cut -d ' ' -f 2 --complement)
     valeurs=${idx}" "${valeurs}
-#Ajouter gestion kbits/s?
+#Ajouter gestion kbits/s? (A suppremier car non implémentée dans speedtest-cli après vérification)
 
 #A continuer
     echo $valeurs >> /tmp/courbeSpeedTest
